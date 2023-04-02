@@ -6,27 +6,31 @@ import {
   NavBar,
   LeftBar,
   RightBar,
+  Bar1,
+  Bar2,
   CenterBar,
   LeftHead,
   RightHead,
 } from './main.styled'
 import imgg from '../../../img/workTable.jpg'
 
-const MainPage = ({setIsLoading}) => {
+const MainPage = ({ setIsLoading }) => {
   return (
     <Container>
       <Content>
         <NavBar>
           <LeftBar>
-            <p>SPM company</p>
+            <Bar1>
+              <p>SPM company</p>
+            </Bar1>
+            <Bar2>
+              <p>Сотрудникам</p>
+              <p>Партнёрам</p>
+              <p>О компании</p>
+            </Bar2>
           </LeftBar>
-          <CenterBar>
-            <p>Сотрудникам</p>
-            <p>Партнёрам</p>
-            <p>О компании</p>
-          </CenterBar>
           <RightBar>
-            <Auth setIsLoading={setIsLoading}/>
+            <Auth setIsLoading={setIsLoading} />
           </RightBar>
         </NavBar>
         <Header>

@@ -34,10 +34,12 @@ export const InfoWindow = styled.div`
   height: 350px;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 1);
-  ${(props) => (props.locationUs === 'registration' && `
+  ${(props) =>
+    props.locationUs === 'registration' &&
+    `
     top: 100px;
     height: 670px;
-  `)};
+  `};
 `
 
 export const ClouseIcon = styled.span`

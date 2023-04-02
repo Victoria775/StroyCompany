@@ -22,7 +22,7 @@ function App() {
         </Spiner>
       )}
       <Routes>
-        <Route path='https://victoria775.github.io/StroyCompany/' element={<MainPage setIsLoading={setIsLoading} />} />
+        <Route path='/' element={<MainPage setIsLoading={setIsLoading} />} />
         <Route path='/worker' element={<WorkerPage setIsLoading={setIsLoading} />} />
         <Route path='/director' element={<DirectorPage setIsLoading={setIsLoading} />} />
       </Routes>

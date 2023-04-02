@@ -1,9 +1,36 @@
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { getUsersList } from './../../../api/user-info'
 import { GeneralContainer } from './styled/general.styled'
-import { Container, Box, Head, Info1, Block, Block2 } from './styled/work-days.styled'
+import {
+  Container,
+  Box,
+  Head,
+  Info1,
+  Block,
+  Block2,
+} from './styled/work-days.styled'
 
-const WorkDays = () => {
-  const { time } = useSelector((state) => state.user)
+const WorkDays = ({ setIsLoading }) => {
+  const { userId, time } = useSelector((state) => state.user)
+  const [userInfo, setUserInfo] = useState({})
+
+  const getUsers = async () => {
+    try {
+      setIsLoading(true)
+      const users = await getUsersList()
+      const user = users.find((user) => user.id === userId)
+      setUserInfo(user)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
 
   return (
     <GeneralContainer>
@@ -13,15 +40,15 @@ const WorkDays = () => {
           <Info1>
             <Box>
               <p>Отработано:</p>
-              <span>{time.current_month.work} дн.</span>
+              <span>{userInfo.time_month_work} дн.</span>
             </Box>
             <Box>
               <p>На больничном:</p>
-              <span>{time.current_month.medical} дн.</span>
+              <span>{userInfo.time_month_medical} дн.</span>
             </Box>
             <Box>
               <p>В отпуске:</p>
-              <span>{time.current_month.vacation} дн.</span>
+              <span>{userInfo.time_month_vacation} дн.</span>
             </Box>
           </Info1>
         </Block>
@@ -30,15 +57,15 @@ const WorkDays = () => {
           <Info1>
             <Box>
               <p>Отработано:</p>
-              <span>{time.year.work} дн.</span>
+              <span>{userInfo.time_year_work} дн.</span>
             </Box>
             <Box>
               <p>На больничном:</p>
-              <span>{time.year.medical} дн.</span>
+              <span>{userInfo.time_year_medical} дн.</span>
             </Box>
             <Box>
               <p>В отпуске:</p>
-              <span>{time.year.vacation} дн.</span>
+              <span>{userInfo.time_year_vacation} дн.</span>
             </Box>
           </Info1>
         </Block2>

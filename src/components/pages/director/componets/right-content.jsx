@@ -13,7 +13,7 @@ const Content = ({ currentPage, setCurrentPage, setIsLoading }) => {
       return <UserData setIsLoading={setIsLoading} />
 
     case NUMBER_PAGE.WORK_DAYS:
-      return <WorkDays />
+      return <WorkDays setIsLoading={setIsLoading} />
 
     case NUMBER_PAGE.VACATION:
       return <Vacation setIsLoading={setIsLoading} />

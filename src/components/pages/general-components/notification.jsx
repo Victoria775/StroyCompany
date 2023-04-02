@@ -172,10 +172,10 @@ const Notification = ({ setCurrentPage, setIsLoading }) => {
                         <span>{message.infoFile.fileName}</span>
                         <button
                           onClick={() => {
-                            downloadFile({
-                              fileName: message.infoFile.fileName,
-                              filePatch: message.infoFile.filePatch,
-                            })
+                            // downloadFile({
+                            //   fileName: message.infoFile.fileName,
+                            //   filePatch: message.infoFile.filePatch,
+                            // })
                           }}
                         >
                           Скачать файл

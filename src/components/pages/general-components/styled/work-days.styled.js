@@ -19,7 +19,7 @@ export const Info1 = styled.div`
   max-width: 700px;
   padding: 30px;
   border-radius: 8px;
-  background-color: rgba(193, 151, 247, 0.3);
+  background-color: rgba(25, 192, 247, 0.2);
 `
 export const Box = styled.div`
   margin: 10px 0px;

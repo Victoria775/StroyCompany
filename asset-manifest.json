@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/StroyCompany/static/css/main.cda90603.css",
-    "main.js": "/StroyCompany/static/js/main.5ffcb34a.js",
+    "main.js": "/StroyCompany/static/js/main.3f69e29b.js",
     "static/media/workTable.jpg": "/StroyCompany/static/media/workTable.3cf9b1d481f7fd7687a1.jpg",
     "static/media/fotoDef.png": "/StroyCompany/static/media/fotoDef.bb1f666417bc9644e681.png",
     "index.html": "/StroyCompany/index.html",
     "main.cda90603.css.map": "/StroyCompany/static/css/main.cda90603.css.map",
-    "main.5ffcb34a.js.map": "/StroyCompany/static/js/main.5ffcb34a.js.map"
+    "main.3f69e29b.js.map": "/StroyCompany/static/js/main.3f69e29b.js.map"
   },
   "entrypoints": [
     "static/css/main.cda90603.css",
-    "static/js/main.5ffcb34a.js"
+    "static/js/main.3f69e29b.js"
   ]
 }

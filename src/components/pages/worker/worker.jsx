@@ -61,7 +61,7 @@ const WorkerPage = ({setIsLoading}) => {
 
   return (
     <Container>
-      <NavBar />
+      <NavBar setCurrentPage={setCurrentPage} />
       <InfoBlock>
         <LeftMenu displayContent={displayContent} />
         <RightContent>

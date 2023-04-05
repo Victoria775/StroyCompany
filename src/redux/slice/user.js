@@ -108,7 +108,7 @@ const userSlice = createSlice({
         state.errorAuth = null
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.loadingAuth = true
+        state.loadingAuth = false
         state.errorAuth = action.payload
       })
 
@@ -130,7 +130,7 @@ const userSlice = createSlice({
         state.errorAuth = null
       })
       .addCase(registrationUser.rejected, (state, action) => {
-        state.loadingAuth = true
+        state.loadingAuth = false
         state.errorAuth = action.payload
       })
 
@@ -142,7 +142,7 @@ const userSlice = createSlice({
         state.errorAuth = null
       })
       .addCase(deleteAccount.rejected, (state, action) => {
-        state.loadingAuth = true
+        state.loadingAuth = false
         state.errorAuth = action.payload
       })
   },

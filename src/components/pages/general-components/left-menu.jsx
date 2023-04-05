@@ -1,9 +1,12 @@
-import { Box, CheckText } from './styled/left-menu.styled'
+import { useSelector } from 'react-redux'
+import { Box, Container, CheckText } from './styled/left-menu.styled'
 
 const LeftMenu = ({ displayContent }) => {
+  const { count } = useSelector((state) => state.other)
+
   return (
     <Box>
-      <div>
+      <Container>
         {displayContent.map((content) => {
           return (
             <CheckText
@@ -11,11 +14,14 @@ const LeftMenu = ({ displayContent }) => {
               onClick={() => content.saveFun()}
               checked={content.checked}
             >
-              {content.name}
+              <p>{content.name}</p>
+              {content.name === 'Уведомления' && count !== 0 && (
+                <span>{count}</span>
+              )}
             </CheckText>
           )
         })}
-      </div>
+      </Container>
     </Box>
   )
 }

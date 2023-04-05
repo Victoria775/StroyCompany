@@ -87,3 +87,8 @@ export const removeMessage = async ({ messageId }) => {
   const response = await axiosInstance.delete(`message/${messageId}`)
   return response
 }
+
+export const updateMessages = async (messages) => {
+  const response = await axiosInstance.patch(`message`, { messages })
+  return response
+}

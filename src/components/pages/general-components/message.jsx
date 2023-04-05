@@ -92,6 +92,7 @@ const Message = ({ setIsLoading }) => {
         senderFio: fio,
         text,
         infoFile: JSON.stringify(infoFile),
+        isRead: false,
       }
 
       await createMessage({ message })

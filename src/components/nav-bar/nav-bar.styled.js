@@ -14,6 +14,13 @@ export const RightSide = styled.div`
   align-items: center;
   p {
     margin: 0px 10px;
+    position: relative;
+    transition: 300ms;
+
+    :hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
   }
   button {
     margin: 0px 30px 0px 20px;
@@ -28,6 +35,21 @@ export const RightSide = styled.div`
     :hover {
       opacity: 1;
     }
+  }
+  span {
+    position: absolute;
+    left: 45%;
+    top: -10%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    color: white;
+    background: red;
+    border-radius: 50%;
   }
 `
 export const LeftSide = styled.div`

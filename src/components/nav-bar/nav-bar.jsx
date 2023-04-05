@@ -1,22 +1,30 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import useGetMes from '../../hooks/useGetMes'
 import { cleanerLocal, setUserInfo } from '../../redux/slice/user'
+import { changeCount } from '../../redux/slice/other'
+import { NUMBER_PAGE } from '../../constants/constant'
 import {
   IoMdNotificationsOutline,
   IoIosHelpCircleOutline,
 } from 'react-icons/io'
 import { Container, LeftSide, RightSide } from './nav-bar.styled'
-import { useEffect } from 'react'
 
-const NavBar = () => {
+const NavBar = ({ setCurrentPage }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const count = useGetMes()
 
   const user = useSelector((state) => state.user)
 
   const logOut = () => {
     navigate('/')
     dispatch(cleanerLocal())
+  }
+
+  const redirectPage = () => {
+    setCurrentPage(NUMBER_PAGE.NOTIFICATION)
   }
 
   useEffect(() => {
@@ -31,7 +39,7 @@ const NavBar = () => {
       dispatch(cleanerLocal())
     }
     if (
-      user.userId === '' && 
+      user.userId === '' &&
       localStorage.getItem('token') &&
       localStorage.getItem('fio') &&
       localStorage.getItem('userId') &&
@@ -42,6 +50,10 @@ const NavBar = () => {
     }
   }, [user])
 
+  useEffect(() => {
+    dispatch(changeCount(count))
+  }, [count])
+
   return (
     <Container>
       <LeftSide>
@@ -51,8 +63,9 @@ const NavBar = () => {
         <p>
           <IoIosHelpCircleOutline />
         </p>
-        <p>
+        <p onClick={redirectPage}>
           <IoMdNotificationsOutline />
+          {count !== 0 && <span>{count}</span>}
         </p>
         <button onClick={logOut}>Выйти</button>
       </RightSide>

@@ -6,6 +6,7 @@ import {
   changeInfoApplication,
   removeMessage,
   removeApplication,
+  updateMessages,
 } from '../../../api/user-info'
 import { getDate } from '../../../utils/get-time'
 import { NUMBER_PAGE } from '../../../constants/constant'
@@ -35,18 +36,29 @@ const Notification = ({ setCurrentPage, setIsLoading }) => {
   const [applications, setApplications] = useState([])
   const [messages, setMessages] = useState([])
 
+  const readMessage = async (messages) => {
+    const updatedMessages = messages.map((message) => {
+      message.isRead = true
+      return message
+    })
+
+    await updateMessages(updatedMessages)
+    return updatedMessages
+  }
+
   const getInfo = async () => {
     try {
       setIsLoading(true)
       const allApplications = await getAllApplications()
-      const messages = await getUserMessages()
+      const responseMessages = await getUserMessages()
+      const updatedMessages = await readMessage(responseMessages)
 
-      messages.forEach((message) => {
+      updatedMessages.forEach((message) => {
         message.infoFile = JSON.parse(message.infoFile)
       })
 
       setApplications(allApplications)
-      setMessages(messages)
+      setMessages(updatedMessages)
     } catch (error) {
       console.log(error)
     } finally {

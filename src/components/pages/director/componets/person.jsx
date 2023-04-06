@@ -7,13 +7,15 @@ import {
   Arrow,
   InfoPerson,
   DopInfo,
+  Blocks,
   InfoBlock,
   InfoBlock2,
   InfoBlock3,
   TimeInput,
+  DeleteBox,
 } from './person.styled'
 
-const Person = ({ person, saveNewInfoUser }) => {
+const Person = ({ person, saveNewInfoUser, deleteUser }) => {
   const [isOpenInfo, setIsOpenInfo] = useState(false)
 
   const [isEdit, setIsEdit] = useState(false)
@@ -50,90 +52,97 @@ const Person = ({ person, saveNewInfoUser }) => {
       </InfoPerson>
       {isOpenInfo && (
         <DopInfo>
-          <InfoBlock>
-            <p className='headerInfo'>Текущий месяц</p>
-            <div>
-              <p>Отработано:</p>
-              {isEdit !== 'time_month_work' ? (
-                <>
-                  <span>{person.time_month_work} дн.</span>
-                  <b onClick={() => setIsEdit('time_month_work')}>
-                    <MdModeEdit />
-                  </b>
-                </>
-              ) : (
-                <TimeInput>
-                  <input
-                    type='number'
-                    value={valueInput}
-                    onChange={(e) => setValueInput(e.target.value)}
-                  />
-                  <b onClick={() => saveValueInput()}>
-                    <AiFillCheckCircle />
-                  </b>
-                </TimeInput>
-              )}
-            </div>
-            <div>
-              <p>На больничном:</p>
-              {isEdit !== 'time_month_medical' ? (
-                <>
-                  <span>{person.time_month_medical} дн.</span>
-                  <b onClick={() => setIsEdit('time_month_medical')}>
-                    <MdModeEdit />
-                  </b>
-                </>
-              ) : (
-                <TimeInput>
-                  <input
-                    type='number'
-                    value={valueInput}
-                    onChange={(e) => setValueInput(e.target.value)}
-                  />
-                  <b onClick={() => saveValueInput()}>
-                    <AiFillCheckCircle />
-                  </b>
-                </TimeInput>
-              )}
-            </div>
-            <div>
-              <p>В отпуске:</p>
-              {isEdit !== 'time_month_vacation' ? (
-                <>
-                  <span>{person.time_month_vacation} дн.</span>
-                  <b onClick={() => setIsEdit('time_month_vacation')}>
-                    <MdModeEdit />
-                  </b>
-                </>
-              ) : (
-                <TimeInput>
-                  <input
-                    type='number'
-                    value={valueInput}
-                    onChange={(e) => setValueInput(e.target.value)}
-                  />
-                  <b onClick={() => saveValueInput()}>
-                    <AiFillCheckCircle />
-                  </b>
-                </TimeInput>
-              )}
-            </div>
-          </InfoBlock>
-          <InfoBlock2>
-            <div>
-              <p className='headerInfo'>Планируемый отпуск</p>
-              <p>c 10.06.22 по 24.06.22</p>
-            </div>
-          </InfoBlock2>
-          <InfoBlock3>
-            <p className='headerInfo'>Текущие задачи</p>
-            <div>
-              {person?.userTasks &&
-                person.userTasks.map((task) => (
-                  <p key={task.id}>{task.text}</p>
-                ))}
-            </div>
-          </InfoBlock3>
+          <Blocks>
+            <InfoBlock>
+              <p className='headerInfo'>Текущий месяц</p>
+              <div>
+                <p>Отработано:</p>
+                {isEdit !== 'time_month_work' ? (
+                  <>
+                    <span>{person.time_month_work} дн.</span>
+                    <b onClick={() => setIsEdit('time_month_work')}>
+                      <MdModeEdit />
+                    </b>
+                  </>
+                ) : (
+                  <TimeInput>
+                    <input
+                      type='number'
+                      value={valueInput}
+                      onChange={(e) => setValueInput(e.target.value)}
+                    />
+                    <b onClick={() => saveValueInput()}>
+                      <AiFillCheckCircle />
+                    </b>
+                  </TimeInput>
+                )}
+              </div>
+              <div>
+                <p>На больничном:</p>
+                {isEdit !== 'time_month_medical' ? (
+                  <>
+                    <span>{person.time_month_medical} дн.</span>
+                    <b onClick={() => setIsEdit('time_month_medical')}>
+                      <MdModeEdit />
+                    </b>
+                  </>
+                ) : (
+                  <TimeInput>
+                    <input
+                      type='number'
+                      value={valueInput}
+                      onChange={(e) => setValueInput(e.target.value)}
+                    />
+                    <b onClick={() => saveValueInput()}>
+                      <AiFillCheckCircle />
+                    </b>
+                  </TimeInput>
+                )}
+              </div>
+              <div>
+                <p>В отпуске:</p>
+                {isEdit !== 'time_month_vacation' ? (
+                  <>
+                    <span>{person.time_month_vacation} дн.</span>
+                    <b onClick={() => setIsEdit('time_month_vacation')}>
+                      <MdModeEdit />
+                    </b>
+                  </>
+                ) : (
+                  <TimeInput>
+                    <input
+                      type='number'
+                      value={valueInput}
+                      onChange={(e) => setValueInput(e.target.value)}
+                    />
+                    <b onClick={() => saveValueInput()}>
+                      <AiFillCheckCircle />
+                    </b>
+                  </TimeInput>
+                )}
+              </div>
+            </InfoBlock>
+            <InfoBlock2>
+              <div>
+                <p className='headerInfo'>Планируемый отпуск</p>
+                <p>c 10.06.22 по 24.06.22</p>
+              </div>
+            </InfoBlock2>
+            <InfoBlock3>
+              <p className='headerInfo'>Текущие задачи</p>
+              <div>
+                {person?.userTasks &&
+                  person.userTasks.map((task) => (
+                    <p key={task.id}>{task.text}</p>
+                  ))}
+              </div>
+            </InfoBlock3>
+          </Blocks>
+          <DeleteBox>
+            <button onClick={() => deleteUser({ userId: person.id })}>
+              Удалить сотрудника
+            </button>
+          </DeleteBox>
         </DopInfo>
       )}
     </Box>

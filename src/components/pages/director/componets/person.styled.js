@@ -28,8 +28,9 @@ export const InfoPerson = styled.div`
     cursor: pointer;
   }
 `
+export const DopInfo = styled.div``
 
-export const DopInfo = styled.div`
+export const Blocks = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
@@ -40,6 +41,26 @@ export const DopInfo = styled.div`
     text-align: center;
   }
 `
+export const DeleteBox = styled.div`
+  margin: 15px 0px 0px 10px;
+  width: max-content;
+
+  button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: white;
+    background-color: rgba(255, 133, 133, 1);
+    opacity: 0.5;
+    transition: 300ms;
+
+    :hover {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+  }
+`
+
 export const InfoBlock = styled.div`
   margin: 10px 20px 0px 10px;
   flex-grow: 1;

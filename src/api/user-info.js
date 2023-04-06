@@ -41,11 +41,10 @@ export const changeUserInfo = async ({ newInfo, userId }) => {
   return response
 }
 
-export const removeUser = async ({ userId }) => {
+export const removeUser = async ({userId}) => {
   try {
-    // const response = await axiosInstance.delete(`user/${userId}`)
-    // return response
-    return true
+    const response = await axiosInstance.delete(`user/${userId}`)
+    return response
   } catch (error) {
     console.log(error)
   }

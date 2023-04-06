@@ -3,6 +3,7 @@ import {
   getUsersList,
   getAllTasks,
   changeUserInfo,
+  removeUser,
 } from '../../../../api/user-info'
 import { GeneralContainer } from '../../general-components/styled/general.styled'
 import Person from './person'
@@ -58,6 +59,18 @@ const PersonalList = ({ setIsLoading }) => {
     }
   }
 
+  const deleteUser = async ({ userId }) => {
+    try {
+      setIsLoading(true)
+      await removeUser({ userId })
+      await getUsers()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   useEffect(() => {
     getUsers()
   }, [])
@@ -74,6 +87,7 @@ const PersonalList = ({ setIsLoading }) => {
                 key={worker.id}
                 person={worker}
                 saveNewInfoUser={saveNewInfoUser}
+                deleteUser={deleteUser}
               />
             ))}
           </ListPersonal>
@@ -86,6 +100,7 @@ const PersonalList = ({ setIsLoading }) => {
                 key={director.id}
                 person={director}
                 saveNewInfoUser={saveNewInfoUser}
+                deleteUser={deleteUser}
               />
             ))}
           </ListPersonal>

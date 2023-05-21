@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { createApplication } from '../../../api/user-info'
+import { changeUserInfo, createApplication } from '../../../api/user-info'
 import { GeneralContainer } from './styled/general.styled'
 import {
   Container,
@@ -18,7 +18,7 @@ import {
 } from './styled/vacation.styled'
 
 const Vacation = ({ setIsLoading }) => {
-  const { userId, fio } = useSelector((state) => state.user)
+  const { userId, fio, time } = useSelector((state) => state.user)
   const [startVacation, setStartVacation] = useState('')
   const [endVacation, setEndVacation] = useState('')
   const [typeVacation, setTypeVacation] = useState('')
@@ -69,7 +69,22 @@ const Vacation = ({ setIsLoading }) => {
         process: 'ожидание исполнения',
       }
 
+      const vacationUser = {
+        start_vacation: Date.parse(start) / 1000,
+        end_vacation: Date.parse(end) / 1000,
+      }
+      const timeUser = {
+        time_month_work: time.current_month.work,
+        time_month_medical: time.current_month.medical,
+        time_month_vacation: time.current_month.vacation,
+        time_year_work: time.year.work,
+        time_year_medical: time.year.medical,
+        time_year_vacation: time.year.vacation,
+      }
+      const newInfo = { time: timeUser, vacation: vacationUser }
+
       await createApplication({ application })
+      await changeUserInfo({ newInfo, userId })
       setStartVacation('')
       setEndVacation('')
       setTypeVacation('')

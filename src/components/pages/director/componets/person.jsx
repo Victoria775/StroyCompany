@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
 import { MdModeEdit } from 'react-icons/md'
 import { AiFillCheckCircle } from 'react-icons/ai'
+import { getDate } from '../../../../utils/get-time'
 import {
   Box,
   Arrow,
@@ -125,7 +126,13 @@ const Person = ({ person, saveNewInfoUser, deleteUser }) => {
             <InfoBlock2>
               <div>
                 <p className='headerInfo'>Планируемый отпуск</p>
-                <p>c 10.06.22 по 24.06.22</p>
+                <p>
+                  {person?.start_vacation && person?.end_vacation
+                    ? `c ${getDate(person.start_vacation)} по ${getDate(
+                        person.end_vacation
+                      )}`
+                    : `отпуск не запланирован`}
+                </p>
               </div>
             </InfoBlock2>
             <InfoBlock3>

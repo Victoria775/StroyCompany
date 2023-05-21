@@ -15,7 +15,7 @@ export const getDate = (seconds) => {
   const date = new Date(0)
   date.setSeconds(seconds)
   const day = date?.getDate() ? addZeroDate(date.getDate()) : 0
-  const month = date?.getMonth() + 1 ? addZeroDate(date.getMonth()) : 0
+  const month = date?.getMonth() ? addZeroDate(date.getMonth() + 1) : 0
   const year = date?.getFullYear() ? addZeroDate(date.getFullYear()) : 0
   return `${day}.${month}.${year}`
 }

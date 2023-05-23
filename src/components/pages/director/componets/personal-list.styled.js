@@ -6,7 +6,7 @@ export const Container = styled.div`
 
 export const Box = styled.div`
   margin-top: 30px;
-  max-width: 900px;
+  max-width: 1000px;
   h3 {
     margin-left: 20px;
   }

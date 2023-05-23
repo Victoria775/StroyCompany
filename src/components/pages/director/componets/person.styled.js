@@ -33,6 +33,8 @@ export const DopInfo = styled.div``
 export const Blocks = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center !important;
+  align-items: flex-start !important;
   margin-top: 10px;
   font-size: 18px;
 
@@ -63,7 +65,7 @@ export const DeleteBox = styled.div`
 
 export const InfoBlock = styled.div`
   margin: 10px 20px 0px 10px;
-  flex-grow: 1;
+  width: 250px;
   display: flex;
   flex-direction: column;
   max-width: 300px;
@@ -120,8 +122,6 @@ export const TimeInput = styled.div`
 
 export const InfoBlock2 = styled(InfoBlock)`
   margin: 10px 20px 0px 10px;
-  flex-grow: 1;
-  max-width: 250px;
   div {
     flex-direction: column;
     p {

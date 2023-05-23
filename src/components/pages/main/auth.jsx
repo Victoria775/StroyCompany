@@ -57,13 +57,15 @@ const Auth = ({ setIsLoading }) => {
           login,
           password,
         })
-      ).then((resp) => {
-        if (resp) {
-          setIsLoading(false)
-          clouseWindow()
-          redirectPage()
-        }
-      })
+      )
+        .then((resp) => {
+          if (resp) {
+            setIsLoading(false)
+            clouseWindow()
+            redirectPage()
+          }
+        })
+        .catch(() => console.log('ошииибка'))
     }
     if (orientation === 'registration') {
       const fio = {
@@ -78,13 +80,15 @@ const Auth = ({ setIsLoading }) => {
           role,
           fio,
         })
-      ).then((resp) => {
-        if (resp) {
-          setIsLoading(false)
-          clouseWindow()
-          redirectPage()
-        }
-      })
+      )
+        .then((resp) => {
+          if (resp) {
+            setIsLoading(false)
+            clouseWindow()
+            redirectPage()
+          }
+        })
+        .catch(() => console.log('ошииибка'))
     }
   }
 

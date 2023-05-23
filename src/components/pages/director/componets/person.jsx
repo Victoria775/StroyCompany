@@ -123,6 +123,75 @@ const Person = ({ person, saveNewInfoUser, deleteUser }) => {
                 )}
               </div>
             </InfoBlock>
+            <InfoBlock>
+              <p className='headerInfo'>Год</p>
+              <div>
+                <p>Отработано:</p>
+                {isEdit !== 'time_year_work' ? (
+                  <>
+                    <span>{person.time_year_work} дн.</span>
+                    <b onClick={() => setIsEdit('time_year_work')}>
+                      <MdModeEdit />
+                    </b>
+                  </>
+                ) : (
+                  <TimeInput>
+                    <input
+                      type='number'
+                      value={valueInput}
+                      onChange={(e) => setValueInput(e.target.value)}
+                    />
+                    <b onClick={() => saveValueInput()}>
+                      <AiFillCheckCircle />
+                    </b>
+                  </TimeInput>
+                )}
+              </div>
+              <div>
+                <p>На больничном:</p>
+                {isEdit !== 'time_year_medical' ? (
+                  <>
+                    <span>{person.time_year_medical} дн.</span>
+                    <b onClick={() => setIsEdit('time_year_medical')}>
+                      <MdModeEdit />
+                    </b>
+                  </>
+                ) : (
+                  <TimeInput>
+                    <input
+                      type='number'
+                      value={valueInput}
+                      onChange={(e) => setValueInput(e.target.value)}
+                    />
+                    <b onClick={() => saveValueInput()}>
+                      <AiFillCheckCircle />
+                    </b>
+                  </TimeInput>
+                )}
+              </div>
+              <div>
+                <p>В отпуске:</p>
+                {isEdit !== 'time_year_vacation' ? (
+                  <>
+                    <span>{person.time_year_vacation} дн.</span>
+                    <b onClick={() => setIsEdit('time_year_vacation')}>
+                      <MdModeEdit />
+                    </b>
+                  </>
+                ) : (
+                  <TimeInput>
+                    <input
+                      type='number'
+                      value={valueInput}
+                      onChange={(e) => setValueInput(e.target.value)}
+                    />
+                    <b onClick={() => saveValueInput()}>
+                      <AiFillCheckCircle />
+                    </b>
+                  </TimeInput>
+                )}
+              </div>
+            </InfoBlock>
             <InfoBlock2>
               <div>
                 <p className='headerInfo'>Планируемый отпуск</p>

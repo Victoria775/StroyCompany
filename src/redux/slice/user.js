@@ -16,9 +16,18 @@ const initialState = {
 
 export const registrationUser = createAsyncThunk(
   'user/registrationUser',
-  async function ({ login, password, fio, role }, { rejectWithValue }) {
+  async function (
+    { login, password, fio, role, nameFiles },
+    { rejectWithValue }
+  ) {
     try {
-      const response = await registration({ login, password, fio, role })
+      const response = await registration({
+        login,
+        password,
+        fio,
+        role,
+        nameFiles,
+      })
       return response
     } catch (error) {
       console.log('Ошибка регистрации: ', error)

@@ -7,3 +7,10 @@ export const NUMBER_PAGE = {
   MESSAGE: 6,
   WORKER_LIST: 7,
 }
+
+export const NAMES_FILES_USER = [
+  'Анкета.docx',
+  'Трудовой договор.pdf',
+  'Должностная инструкция.pdf',
+  'Приказы по сотруднику.pdf',
+]

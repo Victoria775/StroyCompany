@@ -12,6 +12,7 @@ import {
   EnterButton,
   ChooseRole,
 } from './auth.styled'
+import { NAMES_FILES_USER } from '../../../constants/constant'
 
 const Auth = ({ setIsLoading }) => {
   const navigate = useNavigate()
@@ -68,6 +69,7 @@ const Auth = ({ setIsLoading }) => {
         .catch(() => console.log('ошииибка'))
     }
     if (orientation === 'registration') {
+      const nameFiles = [...NAMES_FILES_USER]
       const fio = {
         first_name: firstName,
         last_name: lastName,
@@ -79,6 +81,7 @@ const Auth = ({ setIsLoading }) => {
           password,
           role,
           fio,
+          nameFiles: JSON.stringify(nameFiles),
         })
       )
         .then((resp) => {

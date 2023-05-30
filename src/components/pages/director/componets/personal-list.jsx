@@ -7,11 +7,24 @@ import {
 } from '../../../../api/user-info'
 import { GeneralContainer } from '../../general-components/styled/general.styled'
 import Person from './person'
-import { Container, Head, Box, ListPersonal } from './personal-list.styled'
+import AddUserModal from './add-user-modal'
+import {
+  Box,
+  BoxAddUser,
+  Container,
+  Head,
+  ListPersonal,
+} from './styled/personal-list.styled'
+import ListDocumentModal from './list-document-modal'
+import AddDocumentModal from './add-document-modal'
 
 const PersonalList = ({ setIsLoading }) => {
   const [workers, setWorkers] = useState([])
   const [directors, setDirectors] = useState([])
+  const [isShowAddModal, setIsShowAddModal] = useState(false)
+  const [isShowListDocument, setIsShowListDocument] = useState(false)
+  const [isShowAddModalDocument, setIsShowAddModalDocument] = useState(false)
+  const [selectPerson, setSelectPerson] = useState(null)
 
   const getUsers = async () => {
     try {
@@ -71,6 +84,39 @@ const PersonalList = ({ setIsLoading }) => {
     }
   }
 
+  const saveUserFile = async ({ nameFiles, userId }) => {
+    try {
+      setIsLoading(true)
+      const newInfo = { nameFiles }
+      await changeUserInfo({ newInfo, userId })
+      await getUsers()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleOpenListDoc = (person) => {
+    setSelectPerson(person)
+    setIsShowListDocument(true)
+  }
+
+  const handleCloseListDoc = () => {
+    setSelectPerson(null)
+    setIsShowListDocument(false)
+  }
+
+  const handleOpenAddDoc = (person) => {
+    setSelectPerson(person)
+    setIsShowAddModalDocument(true)
+  }
+
+  const handleCloseAddDoc = () => {
+    setSelectPerson(null)
+    setIsShowAddModalDocument(false)
+  }
+
   useEffect(() => {
     getUsers()
   }, [])
@@ -79,8 +125,12 @@ const PersonalList = ({ setIsLoading }) => {
     <GeneralContainer>
       <Container>
         <Head>Список сотрудников</Head>
+        <BoxAddUser>
+          <button onClick={() => setIsShowAddModal(true)}>
+            Добавить нового сотрудника
+          </button>
+        </BoxAddUser>
         <Box>
-          <h3>Рабочие</h3>
           <ListPersonal>
             {workers.map((worker) => (
               <Person
@@ -88,6 +138,8 @@ const PersonalList = ({ setIsLoading }) => {
                 person={worker}
                 saveNewInfoUser={saveNewInfoUser}
                 deleteUser={deleteUser}
+                handleOpenListDoc={handleOpenListDoc}
+                handleOpenAddDoc={handleOpenAddDoc}
               />
             ))}
           </ListPersonal>
@@ -101,11 +153,33 @@ const PersonalList = ({ setIsLoading }) => {
                 person={director}
                 saveNewInfoUser={saveNewInfoUser}
                 deleteUser={deleteUser}
+                handleOpenListDoc={handleOpenListDoc}
+                handleOpenAddDoc={handleOpenAddDoc}
               />
             ))}
           </ListPersonal>
         </Box>
       </Container>
+      {isShowAddModal && (
+        <AddUserModal
+          setIsShowAddModal={setIsShowAddModal}
+          setIsLoading={setIsLoading}
+          getUsers={getUsers}
+        />
+      )}
+      {isShowListDocument && (
+        <ListDocumentModal
+          handleCloseListDoc={handleCloseListDoc}
+          selectPerson={selectPerson}
+        />
+      )}
+      {isShowAddModalDocument && (
+        <AddDocumentModal
+          handleCloseAddDoc={handleCloseAddDoc}
+          saveUserFile={saveUserFile}
+          selectPerson={selectPerson}
+        />
+      )}
     </GeneralContainer>
   )
 }

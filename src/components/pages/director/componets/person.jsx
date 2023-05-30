@@ -4,21 +4,29 @@ import { MdModeEdit } from 'react-icons/md'
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { getDate } from '../../../../utils/get-time'
 import {
-  Box,
   Arrow,
-  InfoPerson,
-  DopInfo,
+  Box,
+  BottomButtons,
   Blocks,
+  ContractBox,
+  DocumentsButton,
+  DeleteBox,
+  DopInfo,
+  InfoPerson,
   InfoBlock,
   InfoBlock2,
   InfoBlock3,
   TimeInput,
-  DeleteBox,
-} from './person.styled'
+} from './styled/person.styled'
 
-const Person = ({ person, saveNewInfoUser, deleteUser }) => {
+const Person = ({
+  person,
+  saveNewInfoUser,
+  deleteUser,
+  handleOpenListDoc,
+  handleOpenAddDoc,
+}) => {
   const [isOpenInfo, setIsOpenInfo] = useState(false)
-
   const [isEdit, setIsEdit] = useState(false)
   const [valueInput, setValueInput] = useState('')
 
@@ -214,11 +222,25 @@ const Person = ({ person, saveNewInfoUser, deleteUser }) => {
               </div>
             </InfoBlock3>
           </Blocks>
-          <DeleteBox>
-            <button onClick={() => deleteUser({ userId: person.id })}>
-              Удалить сотрудника
-            </button>
-          </DeleteBox>
+          <BottomButtons>
+            <DeleteBox>
+              <button onClick={() => deleteUser({ userId: person.id })}>
+                Удалить сотрудника
+              </button>
+            </DeleteBox>
+            <ContractBox>
+              <DocumentsButton color={'blue'}>
+                <button onClick={() => handleOpenListDoc(person)}>
+                  Просмотреть документы
+                </button>
+              </DocumentsButton>
+              <DocumentsButton color={'green'}>
+                <button onClick={() => handleOpenAddDoc(person)}>
+                  Добавить документы
+                </button>
+              </DocumentsButton>
+            </ContractBox>
+          </BottomButtons>
         </DopInfo>
       )}
     </Box>

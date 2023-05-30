@@ -31,6 +31,33 @@ export const removeTask = async ({ taskId }) => {
   return response
 }
 
+export const createUser = async ({
+  firstName,
+  lastName,
+  fullName,
+  role,
+  userPosition,
+  phone,
+  mail,
+  login,
+  password,
+  nameFiles,
+}) => {
+  const response = await axiosInstance.post(`user`, {
+    firstName,
+    lastName,
+    fullName,
+    role,
+    userPosition,
+    phone,
+    mail,
+    login,
+    password,
+    nameFiles,
+  })
+  return response
+}
+
 export const getUsersList = async () => {
   const response = await axiosInstance.get(`users`)
   return response.data
@@ -41,7 +68,7 @@ export const changeUserInfo = async ({ newInfo, userId }) => {
   return response
 }
 
-export const removeUser = async ({userId}) => {
+export const removeUser = async ({ userId }) => {
   try {
     const response = await axiosInstance.delete(`user/${userId}`)
     return response

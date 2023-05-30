@@ -43,25 +43,6 @@ export const Blocks = styled.div`
     text-align: center;
   }
 `
-export const DeleteBox = styled.div`
-  margin: 15px 0px 0px 10px;
-  width: max-content;
-
-  button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: 700;
-    color: white;
-    background-color: rgba(255, 133, 133, 1);
-    opacity: 0.5;
-    transition: 300ms;
-
-    :hover {
-      transform: scale(1.06);
-      opacity: 1;
-    }
-  }
-`
 
 export const InfoBlock = styled.div`
   margin: 10px 20px 0px 10px;
@@ -139,6 +120,55 @@ export const InfoBlock3 = styled(InfoBlock)`
     p {
       margin: 5px;
       width: 100%;
+    }
+  }
+`
+
+export const DeleteBox = styled.div`
+  margin: 15px 0px 0px 10px;
+  width: max-content;
+
+  button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: white;
+    background-color: rgba(255, 133, 133, 1);
+    opacity: 0.5;
+    transition: 300ms;
+
+    :hover {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+  }
+`
+
+export const BottomButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`
+export const ContractBox = styled.div`
+  display: flex;
+  width: 360px;
+  justify-content: space-between;
+`
+export const DocumentsButton = styled.div`
+  display: flex;
+  button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: white;
+    background-color: ${(props) => `${props.color}`};
+    opacity: 0.4;
+    transition: 300ms;
+    height: 27px;
+
+    :hover {
+      transform: scale(1.06);
+      opacity: 1;
     }
   }
 `
